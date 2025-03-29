@@ -1,4 +1,3 @@
-```markdown
 # Gesture-Based Image Processing
 
 This project uses Mediapipe's hand tracking to apply various image filters based on hand gestures. It also allows switching between different filter units using swipe gestures.
