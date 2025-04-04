@@ -1,3 +1,4 @@
+import os
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -116,10 +117,19 @@ while cap.isOpened():
     
     key = cv2.waitKey(1)
     if key & 0xFF == ord('s'):
-        cv2.imwrite("edited_image.jpg", filtered)
-        print("Image saved!")
+        if gesture and filter_name:
+            # Check if the 'images' folder exists, and create it if not.
+            if not os.path.exists("images"):
+                os.makedirs("images")  # Create the directory
+
+            filename = f"images/{gesture}_{filter_name}.jpg"
+            cv2.imwrite(filename, filtered)
+            print(f"Image saved as: {filename}")
+        else:
+            print("Gesture or Filter not detected, image not saved.")
     elif key & 0xFF == ord('q'):
         break
+
 
 cap.release()
 cv2.destroyAllWindows()
